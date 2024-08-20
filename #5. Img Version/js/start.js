@@ -3,7 +3,7 @@ const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
 
 const endPoint = 12;
-const select = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const select = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function calResult(){
   console.log(select);
@@ -13,6 +13,7 @@ function calResult(){
 
 function setResult(){
   let point = calResult();
+  console.log(point);
   /*const resultName = document.querySelector('.resultname');
   resultName.innerHTML = infoList[point].name;*/
 
@@ -64,6 +65,7 @@ function addAnswer(answerText, qIdx, idx){
       var target = qnaList[qIdx].a[idx].type;
       for(let i = 0; i < target.length; i++){
         select[target[i]] += 1;
+        console.log(select)
       }
 
       for(let i = 0; i < children.length; i++){
