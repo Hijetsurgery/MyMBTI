@@ -1,12 +1,9 @@
 #result{
   display: none;
-  background-color: whitesmoke;
-  width: 80%;
-  text-align: center;
-  border-radius: 20px;
+  background-color: #f2f2f2;
 }
 
-#shareResult{
+/*#shareResult{ 
   background-color: whitesmoke;
   width: 80%;
   text-align: center;
@@ -45,4 +42,4 @@
 .gohome:hover, .gohome:focus {
   background-color: whitesmoke;
   color: pink;
-}
+}*/
