@@ -75,6 +75,46 @@
         </script>
       </section>
       <section id="qna">
+        <style>
+          /* 상단에 고정된 프로그레스 바 스타일 */
+          progress {
+            width: 100%; /* 너비를 100%로 설정하여 페이지 상단에 꽉 차게 */
+            height: 8px; /* 프로그레스 바의 높이 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
+            appearance: none;
+          }
+
+          /* 프로그레스 바의 배경색과 채워진 부분의 색상 */
+          progress::-webkit-progress-bar {
+            background-color: #f3f3f3; /* 배경색 */
+          }
+
+          progress::-webkit-progress-value {
+            background-color: #4caf50; /* 채워진 부분의 색상 */
+          }
+
+          progress::-moz-progress-bar {
+            background-color: #4caf50; /* 채워진 부분의 색상 (Firefox) */
+            transition: width 0.5s ease;
+          }
+        </style>
+        <div>
+          <progress id="progressBar" value="0" max="120"></progress>
+
+          <script>
+            function increaseProgress(vvallue) {
+              const progressBar = document.getElementById("progressBar");
+              let currentValue = progressBar.value;
+
+              if (currentValue < 120) {
+                progressBar.value = vvallue; /* 10%씩 증가 */
+              }
+            }
+          </script>
+        </div>
         <div class="status mx-auto mt-5">
           <div class="statusBar"></div>
         </div>
