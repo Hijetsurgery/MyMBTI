@@ -10,6 +10,7 @@ const qnaList = [
   {
     q: "2. 가고싶은 카페의 분위기는..",
     a: [
+      "분위기",
       { answer: '깔끔하고 모던', type: "a" }, // J 답변
       { answer: '아기자기하고 아늑', type: "b" },
       {answer: '빈티지', type: "c"},

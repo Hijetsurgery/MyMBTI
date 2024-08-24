@@ -4,18 +4,18 @@ const result = document.querySelector("#result");
 
 const endPoint = 6;
 
-const XLSX = require('xlsx');
+const excel = require('xlsx');
 
 // 엑셀 파일 경로
 const filePath = 'C:/Users/taeyo/OneDrive/바탕 화면/문서/GitHub/lovewithrio/MyMBTI/#5. Img Version copy/L-BTI 결과 알고리즘_v.2.0.xlsx';
 
 // 엑셀 파일 읽기
-const workbook = XLSX.readFile(filePath);
+const workbook = excel.readFile(filePath);
 
 // Sheet2의 A1:G13 범위 가져오기
 const sheet = workbook.Sheets['Sheet2'];
-const range = XLSX.utils.decode_range('A1:G13');
-const data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: range });
+const range = excel.utils.decode_range('A1:G13');
+const data = excel.utils.sheet_to_json(sheet, { header: 1, range: range });
 
 // 데이터 가공 (첫 번째 행은 헤더로 사용)
 const headers = data[0];
@@ -135,7 +135,7 @@ function goNext(qIdx){
 
   var q = document.querySelector('.qBox');
   q.innerHTML = qnaList[qIdx].q;
-  for(let i in qnaList[qIdx].a){
+  for(let i = 1; i <= qnaList[qIdx].a.length; i++){
     addAnswer(qnaList[qIdx].a[i].answer, qIdx, i);
   }
   var status = document.querySelector('.statusBar');
