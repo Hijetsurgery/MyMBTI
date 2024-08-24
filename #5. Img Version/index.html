@@ -105,12 +105,23 @@
           <progress id="progressBar" value="0" max="120"></progress>
 
           <script>
-            function increaseProgress(vvallue) {
+            function increaseProgress() {
               const progressBar = document.getElementById("progressBar");
               let currentValue = progressBar.value;
+              let targetValue = currentValue + 10;
 
-              if (currentValue < 120) {
-                progressBar.value = vvallue; /* 10%씩 증가 */
+              if (targetValue <= 120) {
+                let increment = 0;
+                const step = 10 / 100; // 10을 100등분하여 증가 단위를 설정
+
+                const interval = setInterval(() => {
+                  if (increment < 100) {
+                    progressBar.value = currentValue + (increment + 1) * step;
+                    increment += 1;
+                  } else {
+                    clearInterval(interval); // 100번 증가하면 반복 종료
+                  }
+                }, 10); // 10ms마다 증가
               }
             }
           </script>

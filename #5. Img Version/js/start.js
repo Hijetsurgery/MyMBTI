@@ -93,7 +93,7 @@ function goNext(qIdx) {
     addAnswer(qnaList[qIdx].a[i].answer, qIdx, i);
   }
 
-  increaseProgress(10 * qIdx);
+  increaseProgress();
 }
 
 function begin() {
