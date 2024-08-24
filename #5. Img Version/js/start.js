@@ -92,8 +92,7 @@ function goNext(qIdx) {
   for (let i in qnaList[qIdx].a) {
     addAnswer(qnaList[qIdx].a[i].answer, qIdx, i);
   }
-  var status = document.querySelector(".statusBar");
-  status.style.width = (100 / endPoint) * (qIdx + 1) + "%";
+
   increaseProgress(10 * qIdx);
 }
 
