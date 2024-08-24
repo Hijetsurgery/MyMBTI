@@ -54,8 +54,9 @@ function calResult(){
     index++;
   }
 
-  var result = select.indexOf(Math.max(...select));
-  return result;
+  // 최종 매칭된 카페 출력
+  const bestMatch = bestMatches[0];
+  return bestMatch['카페'];
 }
 
 function setResult(){
@@ -66,7 +67,7 @@ function setResult(){
 
   var resultImg = document.createElement('img');
   const imgDiv = document.querySelector('#resultImg');
-  var imgURL = 'img/image-' + point + '.png';
+  var imgURL = point + '.jpg';
   resultImg.src = imgURL;
   resultImg.alt = point;
   resultImg.classList.add('img-fluid');
@@ -149,28 +150,10 @@ function begin(){
     qna.style.animation = "fadeIn 1s";
     setTimeout(() => {
       main.style.display = "none";
-      qna.style.display = "block"
+      qna.style.display = "block";
     }, 450)
     let qIdx = 0;
     goNext(qIdx);
   }, 450);
 }
 
-
-// 사용자의 답변 (예시로 가정)
-const answers = {
-  '거리': 3,
-  '분위기': 5,
-  '감성/맛': 4,
-  '음료/디저트': 3,
-  '공간감': 5,
-  '디저트': 4
-};
-
-
-
-
-
-// 최종 매칭된 카페 출력
-const bestMatch = bestMatches[0];
-console.log("\n당신의 답변과 가장 일치하는 카페는:", bestMatch['카페']);
