@@ -3,60 +3,55 @@ const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
 
 const endPoint = 6;
-import excel from 'xlsx';
+
 // 엑셀 파일 경로
-const filePath = 'C:/Users/taeyo/OneDrive/바탕 화면/문서/GitHub/lovewithrio/MyMBTI/#5. Img Version copy/L-BTI 결과 알고리즘_v.2.0.xlsx';
+let excel = [
+  ['a', 'a', 'a', 'a', 'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b'],
+  ['a', 'a', 'b', 'c', 'd', 'a', 'a', 'b', 'b', 'c', 'c', 'd'],
+  ['b', 'a', 'b', 'a', 'a', 'b', 'a', 'a', 'b', 'b', 'b', 'a'],
+  ['b', 'b', 'b', 'b', 'a', 'a', 'b', 'a', 'b', 'a', 'b', 'a'],
+  ['b', 'a', 'b', 'a', 'b', 'b', 'b', 'b', 'a', 'a', 'b', 'b'],
+  ['b', 'b', 'a', 'b', 'a', 'a', 'b', 'a', 'a', 'a', 'b', 'b'],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
 
-window.addEventListener('DOMContentLoaded', () => {
-  // 엑셀 파일 읽기
-  const workbook = excel.readFile(filePath);
+const shop = ['가온길', '톤즈', '스위트브라운', '위베이브베이크샵', '오프타임', '아이딜', '인하프', '메이브커피숍', '아모르미오',
+  '솔이네 커피볶는집', '더코티지', '카페 디피드'
+]
+let answers = []
 
-  // Sheet2의 A1:G13 범위 가져오기
-  const sheet = workbook.Sheets['Sheet2'];
-  const range = excel.utils.decode_range('A1:G13');
-  const data = excel.utils.sheet_to_json(sheet, { header: 1, range: range });
-
-  // 데이터 가공 (첫 번째 행은 헤더로 사용)
-  const headers = data[0];
-  const rows = data.slice(1).map(row => {
-    let obj = {};
-    headers.forEach((header, i) => {
-      obj[header] = row[i];
-    });
-    return obj;
-  });
-})
 
 // 가중치 설정
 const weights = {
-  '거리': 0.5,
-  '분위기': 3,
-  '감성/맛': 0.5,
-  '음료/디저트': 1,
-  '공간감': 2.5,
-  '디저트': 2
+  0: 0.5,
+  1: 3,
+  2: 0.5,
+  3: 1,
+  4: 2.5,
+  5: 2
 };
 
 function calResult(){
   // 가장 일치하는 카페들 찾기
-  const maxMatchCount = Math.max(...rows.map(row => row.match_count));
-  let bestMatches = rows.filter(row => row.match_count === maxMatchCount);
-  // 필터링 순서에 따른 최종 선택 로직
-  const priorityOrder = ['분위기', '디저트', '공간감', '음료/디저트', '감성/맛', '거리'];
+  let maxValue = Math.max(...excel[6]);
+  let count = excel[6].filter(value => value === maxValue).length;
+  let maxMatchCount = excel[6].indexOf(maxValue);
 
-  let index = 0;
-  while (bestMatches.length > 1 && index < priorityOrder.length) {
+  // 필터링 순서에 따른 최종 선택 로직
+  const priorityOrder = [1, 5, 4, 3, 2, 0];
+
+  /*let index = 0;
+  while (count > 1 && index < priorityOrder.length) {
     const col = priorityOrder[index];
     const filteredMatches = bestMatches.filter(row => row[col] === answers[col]);
     if (filteredMatches.length > 0) {
       bestMatches = filteredMatches;
     }
     index++;
-  }
+  }*/
 
   // 최종 매칭된 카페 출력
-  const bestMatch = bestMatches[0];
-  return bestMatch['카페'];
+  return shop[maxMatchCount];
 }
 
 function setResult(){
@@ -67,7 +62,7 @@ function setResult(){
 
   var resultImg = document.createElement('img');
   const imgDiv = document.querySelector('#resultImg');
-  var imgURL = point + '.jpg';
+  var imgURL = 'img/' + point + '.jpg';
   resultImg.src = imgURL;
   resultImg.alt = point;
   resultImg.classList.add('img-fluid');
@@ -112,12 +107,19 @@ function addAnswer(answerText, qIdx, idx){
     setTimeout(() => {
       var target = qnaList[qIdx].a[idx].type;
       // 일치도 계산
-      rows.forEach(row => {
+      /*rows.forEach(row => {
         row.match_count = 0;
           if (row[qnaList[qIdx].a[0]] === target) {
             row.match_count += weights[qnaList[qIdx].a[0]];
         }
-      });
+      });*/
+      for (let i = 0; i < 6; i++) {
+        if (excel[qIdx][i] === qnaList[qIdx].a[idx].type) {
+            excel[qIdx][6][i] += weights[qIdx];
+            answers[qIdx] = weights[qIdx];
+        }
+      }
+    
 
       for(let i = 0; i < children.length; i++){
         children[i].style.display = 'none';
