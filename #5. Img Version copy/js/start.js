@@ -37,6 +37,8 @@ function calResult(){
   let count = excel[6].filter(value => value === maxValue).length;
   let maxMatchCount = excel[6].indexOf(maxValue);
 
+  console.log(excel[6]);
+
   // 필터링 순서에 따른 최종 선택 로직
   const priorityOrder = [1, 5, 4, 3, 2, 0];
 
@@ -115,7 +117,8 @@ function addAnswer(answerText, qIdx, idx){
       });*/
       for (let i = 0; i < 6; i++) {
         if (excel[qIdx][i] === qnaList[qIdx].a[idx].type) {
-            excel[qIdx][6][i] += weights[qIdx];
+            excel[6][i] += weights[qIdx];
+            console.log(weights[qIdx])
             answers[qIdx] = weights[qIdx];
         }
       }
