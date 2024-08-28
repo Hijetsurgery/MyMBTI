@@ -34,13 +34,36 @@ const weights = {
 function calResult(){
   // 가장 일치하는 카페들 찾기
   let maxValue = Math.max(...excel[6]);
-  let count = excel[6].filter(value => value === maxValue).length;
-  let maxMatchCount = excel[6].indexOf(maxValue);
+  let maxMatchCount = [];
+  for (let i = 0; i < 12; i++) {
+    if (excel[6][i] === maxValue) {
+        maxMatchCount.push(i);
+    }
+  }
 
   console.log(excel[6]);
 
   // 필터링 순서에 따른 최종 선택 로직
   const priorityOrder = [1, 5, 4, 3, 2, 0];
+
+  if (maxMatchCount.length >= 3) {
+    return maxMatchCount[Math.floor(Math.random() * maxMatchCount.length)];
+    } else if (maxMatchCount.length === 2) {
+        for (let i of priorityOrder) {
+            if (excel[i][maxMatchCount[0]] === excel[i][maxMatchCount[1]]) {
+                continue;
+            } else if (excel[i][maxMatchCount[0]] === answers[i]) {
+                return maxMatchCount[0];
+            } else if (excel[i][maxMatchCount[1]] === answers[i]) {
+                return maxMatchCount[1];
+            } else {
+                continue;
+            }
+        }
+    } else {
+        return maxMatchCount[0];
+    }
+
 
   /*let index = 0;
   while (count > 1 && index < priorityOrder.length) {
@@ -53,11 +76,10 @@ function calResult(){
   }*/
 
   // 최종 매칭된 카페 출력
-  return shop[maxMatchCount];
 }
 
 function setResult(){
-  let point = calResult();
+  let point = shop[calResult()];
   console.log(point);
   /*const resultName = document.querySelector('.resultname');
   resultName.innerHTML = infoList[point].name;*/
