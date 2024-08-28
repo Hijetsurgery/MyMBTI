@@ -1,9 +1,24 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
-
+const img0 = document.getElementById("Im_id");
 const endPoint = 12;
 const select = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+Id_List = [
+  "./img/Q1.jpg",
+  "./img/Q2.jpg",
+  "./img/Q3.jpg",
+  "./img/Q4.jpg",
+  "./img/Q5.jpg",
+  "./img/Q6.jpg",
+  "./img/Q7.jpg",
+  "./img/Q8.jpg",
+  "./img/Q9.jpg",
+  "./img/Q10.jpg",
+  "./img/Q11jpg",
+  "./img/Q12.jpg",
+];
 
 function calResult() {
   console.log(select);
@@ -86,7 +101,7 @@ function goNext(qIdx) {
     goResult();
     return;
   }
-
+  img0.src = Id_List[qIdx];
   var q = document.querySelector(".qBox");
   q.innerHTML = qnaList[qIdx].q;
   for (let i in qnaList[qIdx].a) {
