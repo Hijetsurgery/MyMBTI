@@ -137,7 +137,7 @@ function addAnswer(answerText, qIdx, idx){
             row.match_count += weights[qnaList[qIdx].a[0]];
         }
       });*/
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 12; i++) {
         if (excel[qIdx][i] === qnaList[qIdx].a[idx].type) {
             excel[6][i] += weights[qIdx];
             console.log(weights[qIdx])
