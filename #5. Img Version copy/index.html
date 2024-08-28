@@ -132,7 +132,14 @@
           id="resultImg"
           class="col-lg-6 col-md-8 col-sm-10 col-12 mx-auto"
         ></div>
-        <!-- <button type="button" class="kakao mt-3 py-2 px-3" onclick="js:setShare()">공유하기</button>-->
+        <button class="fixed-button" id="navigateButton">카페 상세 정보</button>
+        <script>
+          document
+            .getElementById("navigateButton")
+            .addEventListener("click", function () {
+              window.location.href = "https://map.naver.com/";
+            });
+        </script>
       </section>
 
       <script src="./js/data.js" charset="utf-8"></script>
