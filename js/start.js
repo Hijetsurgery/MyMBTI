@@ -20,6 +20,25 @@ Id_List = [
   "./img/Q12.jpg",
 ];
 
+const shop = [
+"https://naver.me/xw6okT54",
+"https://naver.me/F5bFLEez",
+"https://naver.me/xY9gAMXd",
+"https://naver.me/F7CopBuu",
+"https://naver.me/FYua7aZE",
+"https://naver.me/GAi6ecGv",
+"https://naver.me/IMn7yRoh",
+"https://naver.me/56a3Nk1D",
+"https://naver.me/FshiHr7Z",
+"https://naver.me/FOvRiQlR",
+"https://naver.me/5nbeH1hR",
+"https://naver.me/xevjbdqm",
+"https://naver.me/FzHjT5HE",
+"https://naver.me/FOvhceY5",
+"https://naver.me/GsPLIMcG",
+"https://naver.me/x6UfZuaW"
+]
+
 function calResult() {
   console.log(select);
   var result = select.indexOf(Math.max(...select));
@@ -124,4 +143,8 @@ function begin() {
     let qIdx = 0;
     goNext(qIdx);
   }, 450);
+}
+
+function goMap() {
+  window.location.href = shop[calResult()];
 }
