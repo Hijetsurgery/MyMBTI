@@ -16,7 +16,7 @@ Id_List = [
   "./img/Q8.jpg",
   "./img/Q9.jpg",
   "./img/Q10.jpg",
-  "./img/Q11jpg",
+  "./img/Q11.jpg",
   "./img/Q12.jpg",
 ];
 
